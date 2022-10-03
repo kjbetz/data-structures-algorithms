@@ -2,11 +2,11 @@
 
 public class LinearSearch
 {
-    public bool Search(int[] arr, int value)
+    public bool Search(int[] haystack, int needle)
     {
-        for (int i = 0; i < arr.Length; i++)
+        for (int i = 0; i < haystack.Length; i++)
         {
-            if (arr[i] == value)
+            if (haystack[i] == needle)
             {
                 return true;
             }
