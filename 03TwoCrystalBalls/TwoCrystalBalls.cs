@@ -5,32 +5,21 @@ public class TwoCrystalBalls
     public int FindBreakingPoint(bool[] breaks)
     {
         int jump = (int)Math.Floor(Math.Sqrt(breaks.Length));
-        int checkpoint = jump;
-        int lastKnown = -1;
-        bool walkIt = false;
+        int i = jump;
 
-        do
+        for (; i < breaks.Length; i += jump)
         {
-            if (breaks[checkpoint] == false)
-            {
-                lastKnown = checkpoint;
-                checkpoint = walkIt == true ? checkpoint + 1 : checkpoint + jump;
-            }
-            else
-            {
-                if (walkIt == false)
-                {
-                    checkpoint = lastKnown == -1 ? 0 : lastKnown;
-                    walkIt = true;
-                }
-                else
-                {
-                    break;
-                }
-            }
-        } while (checkpoint < breaks.Length);
+            if (breaks[i] == true) break;
+        }
 
-        return checkpoint >= breaks.Length ? -1 : checkpoint;
+        i -= jump;
+
+        for (int j = 0; j < jump && i < breaks.Length; i++)
+        {
+            if (breaks[i] == true) return i;
+        }
+
+        return -1;
     }
 }
 
